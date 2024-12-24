@@ -42,5 +42,5 @@ In the skin disease classification project, the model selection process involves
 
 By combining CNNs and LSTMs, the model can effectively handle the spatial complexity of skin images and the sequential or temporal patterns that may arise in medical imaging, improving both classification accuracy and robustness. 
 
-Code 
-
+Code :
+https://github.com/Aakash1379/Skin-Disease-Classification/blob/main/Skin_Diseases.ipynb
