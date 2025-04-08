@@ -11,9 +11,7 @@ A skin disease classification project aims to develop a machine learning model o
 
 About the Dataset: 
 
-This dataset contains the training data for the ISIC 2019 challenge, note that it already includes data from previous years (2018 and 2017). 
-
-The dataset for ISIC 2019 contains 25,331 images available for the classification of dermoscopic images among nine different diagnostic categories: 
+The dataset for ISIC multiple skin diseases classification contains 4109 images available for the classification of dermoscopic images among nine different diagnostic categories: 
 
 Melanoma 
 Melanocytic nevus 
@@ -28,19 +26,35 @@ Squamous cell carcinoma
 
 Model Selection 
 
-In the skin disease classification project, the model selection process involves choosing an appropriate architecture that can effectively handle the complexities of both image data and temporal sequences, given that you are using a combination of Convolutional Neural Networks (CNN) and Long Short-Term Memory (LSTM) networks. 
+real-time or mobile deployment. MobileNetV2, a highly efficient CNN architecture, is well-suited for this task due to its balance between accuracy and computational cost. Leveraging transfer learning enhances the model's ability to generalize effectively, even with relatively small datasets.
 
-1. Model Overview: The hybrid CNN-LSTM model combines the strengths of both architectures. CNNs are well-suited for extracting spatial features from images by applying convolutional filters, which are crucial for identifying patterns in skin lesions. LSTM networks, on the other hand, are effective at learning and capturing temporal or sequential patterns, making them useful when handling data that may have temporal dependencies (such as video frames or time-series data). 
+1. Model Overview
+MobileNetV2 is a convolutional neural network architecture optimized for performance on mobile and edge devices. It uses depthwise separable convolutions and inverted residual blocks to reduce model size and computation. In transfer learning, a MobileNetV2 model pre-trained on a large dataset like ImageNet is fine-tuned on the target skin disease dataset. This enables the model to reuse learned features from general images and adapt them to skin lesion classification.
 
-2. CNN Component: The CNN is used for feature extraction from the input skin images. Multiple convolutional layers, followed by pooling layers, are applied to capture important features such as texture, color variations, and the shapes of skin lesions. These extracted features help in distinguishing between different types of skin diseases. 
+2. Feature Extraction with MobileNetV2
+MobileNetV2 acts as a powerful feature extractor in the transfer learning setup. The early and intermediate layers, trained on millions of images, capture low- and mid-level features such as edges, textures, and shapes. These are essential for distinguishing different skin diseases, which may share visual similarities. The final few layers of MobileNetV2 can be replaced or fine-tuned with task-specific layers to better suit the skin lesion classification objective.
 
-3. LSTM Component: The LSTM network comes into play when the model needs to understand sequences or dependencies within the features extracted by CNN layers. In the case of skin disease classification, the LSTM could be used to process sequences of image data (for example, in video or time-sequenced images of a lesion) to identify temporal patterns, helping the model predict disease progression or classifying images based on a sequence of frames rather than a single image. 
+3. Transfer Learning Process
+The transfer learning workflow begins by loading the pre-trained MobileNetV2 model without its top classification layer. The base layers are typically frozen initially to retain their learned representations. A custom classification head is then added, consisting of a global average pooling layer, dropout for regularization, and one or more dense layers. The final output layer uses softmax for multi-class classification (e.g., different skin conditions) or sigmoid for binary classification. Optionally, selective unfreezing of MobileNetV2 layers allows fine-tuning to the skin image domain.
 
-4. Model Architecture: The architecture typically starts with several convolutional layers to extract hierarchical features from the input image, followed by an LSTM layer (or several layers) to capture the sequential dependencies among the extracted features. After the LSTM layer, the network often includes fully connected (dense) layers, followed by a softmax or sigmoid output layer, depending on whether the classification is multi-class or binary. 
+4. Model Architecture
+Base Model: Pre-trained MobileNetV2 without the top layer (include_top=False), with weights loaded from ImageNet.
 
-5. Model Evaluation and Fine-Tuning: Model selection involves evaluating the performance of the CNN-LSTM model using standard classification metrics such as accuracy, precision, recall, F1-score, and the confusion matrix. Cross-validation is used to assess generalization. Hyperparameter tuning, such as adjusting the number of convolutional filters, the number of LSTM units, learning rate, and batch size, helps to optimize the model's performance. 
+Global Average Pooling: Reduces the spatial dimensions while retaining key features.
 
-By combining CNNs and LSTMs, the model can effectively handle the spatial complexity of skin images and the sequential or temporal patterns that may arise in medical imaging, improving both classification accuracy and robustness. 
+Dropout Layer: Prevents overfitting, especially important with limited medical image data.
+
+Dense Layer(s): Learn task-specific features for skin disease classification.
+
+Output Layer: Uses softmax for multi-class output (e.g., eczema, melanoma, psoriasis, etc.).
+This architecture ensures a compact model with high inference speed and sufficient capacity for complex skin lesion recognition.
+
+5. Model Evaluation and Fine-Tuning
+Evaluation of the MobileNetV2-based model involves classification metrics such as accuracy, precision, recall, F1-score, and visualization of the confusion matrix to understand misclassifications. Cross-validation can assess the robustness of the model. Fine-tuning involves hyperparameter optimization, such as adjusting learning rates, batch sizes, number of trainable layers in MobileNetV2, and the size of dense layers. Data augmentation (e.g., rotation, flipping, brightness adjustment) is also critical to prevent overfitting and improve generalization.
+
+Conclusion:
+By utilizing MobileNetV2 with transfer learning, the model can achieve high accuracy even with smaller datasets, thanks to the powerful pre-trained feature extraction capabilities. Its lightweight architecture makes it ideal for deployment on mobile platforms or in low-resource clinical settings. The approach ensures a good balance between model performance, training efficiency, and deployment readiness in the context of skin disease diagnosis.
+ 
 
 Code :
 https://github.com/Aakash1379/Skin-Disease-Classification/blob/main/Skin_Diseases.ipynb
