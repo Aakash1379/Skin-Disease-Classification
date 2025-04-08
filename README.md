@@ -57,4 +57,4 @@ By utilizing MobileNetV2 with transfer learning, the model can achieve high accu
  
 
 Code :
-https://github.com/Aakash1379/Skin-Disease-Classification/blob/main/Skin_Diseases.ipynb
+https://github.com/Aakash1379/Skin-Disease-Classification/blob/main/Skin%20Disease%20Classification.ipynb
