@@ -1,4 +1,4 @@
-Skin Disease Classification 
+**Skin Disease Classification** 
 
 A skin disease classification project aims to develop a machine learning model or system that can accurately identify and categorize various skin conditions from images. By leveraging techniques such as image processing, convolutional neural networks (CNNs), and deep learning algorithms, the project processes skin images to classify conditions like Melanoma, Melanocytic nevus, Basal cell carcinoma, Actinic keratosis, Benign keratosis Dermatofibroma, Vascular lesion, Squamous cell carcinoma dermatological disorders. The primary goal is to create a tool that can assist healthcare professionals in diagnosing skin diseases more efficiently and accurately, potentially aiding in early detection and treatment planning. The project typically involves collecting a large, diverse dataset of skin images, preprocessing the data, training a model, and evaluating its performance using metrics like accuracy and precision. 
 
@@ -9,7 +9,7 @@ A skin disease classification project aims to develop a machine learning model o
 
 
 
-About the Dataset: 
+**About the Dataset:** 
 
 The dataset for ISIC multiple skin diseases classification contains 4109 images available for the classification of dermoscopic images among nine different diagnostic categories: 
 
@@ -24,7 +24,7 @@ Squamous cell carcinoma
 
  
 
-Model Selection 
+**Model Selection** 
 
 real-time or mobile deployment. MobileNetV2, a highly efficient CNN architecture, is well-suited for this task due to its balance between accuracy and computational cost. Leveraging transfer learning enhances the model's ability to generalize effectively, even with relatively small datasets.
 
